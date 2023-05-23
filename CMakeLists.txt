@@ -55,7 +55,7 @@ endif()
 
 # static link for the release build
 if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_link_options(${PROJECT_NAME} PRIVATE -static)
+    target_link_options(${PROJECT_NAME} PRIVATE)
 else()
     target_compile_options(${PROJECT_NAME} PRIVATE -fsanitize=address -fsanitize=leak)
     target_link_options(${PROJECT_NAME} PRIVATE -fsanitize=address -fsanitize=leak)
@@ -85,5 +85,5 @@ PRIVATE
     soci_mysql
 
 PRIVATE
-    ${wiringpi_LIBRARIES}
+    ${WIRINGPI_LIBRARIES}
 )
