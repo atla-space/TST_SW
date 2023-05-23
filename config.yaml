@@ -1,0 +1,16 @@
+database:
+  host: localhost
+  name: teststand
+  user: root
+  password: teststand
+
+bind: 0.0.0.0:80
+
+hx711:
+  clkpin: 2
+  dtpin: 0
+  channel: A128
+
+led:
+  pin: 3
+

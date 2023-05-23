@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TestStand by Zeeno</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/chart.min.js"></script>
+	<script src="js/hammer.js"></script>
+	<script src="js/chartjs-plugin-zoom.min.js"></script>
+</head>
+
+<body>
+	<div id="panes">
+		<div id="leftPane">
+			<div id="value"></div>
+			<div id="experiments">
+				<h3>Experiments</h3>
+				<div class="toolbar">
+					<button id="btnRefresh">Refresh</button>
+					<button id="btnAdd">Add</button>
+					<button id="btnStart">Start recording</button>
+					<button id="btnStop">Stop recording</button>
+				</div>
+				<div id="experiments-list"></div>
+			</div>
+			<div id="calibrations">
+				<h3>Calibrations</h3>
+				<div class="toolbar">
+					<button id="btnAddCalibration">Add</button>
+					<button id="btnLoadCalibration">Load</button>
+					<button id="btnAddCalibrationPoint">Add calibration point</button>
+				</div>
+				<div id="calibrations-list"></div>
+			</div>
+		</div>
+		<div id="rightPane">
+			<canvas id="chart"></canvas>
+		</div>
+	</div>
+	<script src="js/script.js" type="module"></script>
+</body>
+
+</html>
