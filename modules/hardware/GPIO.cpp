@@ -16,7 +16,28 @@ import Hardware.GPIO;
 #include <span>
 #include <string>
 #include <unistd.h>
-#include <wiringPi.h>
+
+#if __has_include(<wiringPi.h>)
+#	include <wiringPi.h>
+#else
+static const constexpr int PUD_UP{0};
+static const constexpr int PUD_DOWN{1};
+static const constexpr int PUD_OFF{2};
+static const constexpr int INPUT{0};
+static const constexpr int OUTPUT{1};
+static const constexpr int HIGH{1};
+static const constexpr int LOW{0};
+
+auto digitalRead([[maybe_unused]] int pin) -> int {
+	return 0;
+}
+auto digitalWrite([[maybe_unused]] int pin, [[maybe_unused]] int value) -> void {
+}
+auto pinMode([[maybe_unused]] int pin, [[maybe_unused]] int direction) -> void {
+}
+auto pullUpDnControl([[maybe_unused]] int pin, [[maybe_unused]] int pull) -> void {
+}
+#endif
 
 module Hardware.GPIO;
 

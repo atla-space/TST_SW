@@ -4,6 +4,7 @@ module;
 #include <vector>
 
 export module Filter.Average;
+export import Signal;
 export import Filter;
 
 export template<typename T>

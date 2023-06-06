@@ -7,6 +7,8 @@ module;
 
 import Defer;
 import Hardware.HX711;
+import Hardware.GPIO;
+import Signal;
 module Hardware.HX711;
 
 const std::map<HX711::ChannelType, uint8_t> pulsesPerChannel{

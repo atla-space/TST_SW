@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#include <wiringPi.h>
-#include <wiringpi2/wiringPi.h>
 
 #include "App.hpp"
 

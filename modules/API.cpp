@@ -13,6 +13,7 @@ import Connection;
 import Model.Experiment;
 import Model.Calibration;
 import Model.CalibrationPoint;
+import Signal;
 
 module API;
 

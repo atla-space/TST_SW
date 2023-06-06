@@ -4,6 +4,7 @@ module;
 #include <thread>
 
 import Hardware.LedBlinker;
+import Hardware.GPIO;
 
 module Hardware.LedBlinker;
 

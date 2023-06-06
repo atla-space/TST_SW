@@ -13,7 +13,9 @@ import API;
 import Hardware.GPIO;
 import Hardware.HX711;
 import Hardware.LedBlinker;
+import Filter;
 import Filter.Average;
+import Interpolation;
 import Interpolation.LinearInterpolation;
 
 class App {

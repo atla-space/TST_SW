@@ -16,6 +16,7 @@ set(CMAKE_EXPERIMENTAL_CXX_MODULE_DYNDEP 1)
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_options(-Wall -Wextra -pedantic)
+    
     set(CMAKE_LINK_WHAT_YOU_USE ON)
     # find clang-tidy and cppcheck
     
@@ -67,10 +68,6 @@ find_package(fmt CONFIG REQUIRED)
 find_package(simple-yaml CONFIG REQUIRED)
 find_package(range-v3 CONFIG REQUIRED)
 
-find_package(PkgConfig)
-pkg_check_modules(WIRINGPI REQUIRED libwiringpi2)
-target_include_directories(${PROJECT_NAME} PRIVATE ${WIRINGPI_INCLUDE_DIRS})
-
 target_include_directories(${PROJECT_NAME} PRIVATE /usr/include/mariadb/)
 
 target_link_libraries(${PROJECT_NAME}
@@ -83,7 +80,11 @@ PRIVATE
 
     soci_core
     soci_mysql
-
-PRIVATE
-    ${WIRINGPI_LIBRARIES}
 )
+
+find_package(PkgConfig)
+pkg_check_modules(WIRINGPI libwiringpi2)
+if (WIRINGPI_FOUND)
+    target_include_directories(${PROJECT_NAME} PRIVATE ${WIRINGPI_INCLUDE_DIRS})
+    target_link_libraries(${PROJECT_NAME} PRIVATE ${WIRINGPI_LIBRARIES})
+endif()

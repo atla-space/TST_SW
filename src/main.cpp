@@ -8,7 +8,18 @@
 #include <string>
 #include <thread>
 #include <vector>
-#include <wiringPi.h>
+
+#if __has_include(<wiringPi.h>)
+#	include <wiringPi.h>
+#else
+auto wiringPiSetup() -> int {
+	return 0;
+}
+auto wiringPiVersion(int* major, int* minor) -> void {
+	*major = 0;
+	*minor = 0;
+}
+#endif
 
 import Defer;
 
