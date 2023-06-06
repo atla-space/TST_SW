@@ -4,11 +4,7 @@ rm -rf build
 rm -rf out
 
 mkdir -p build/Debug
-cd ./build/Debug
-conan install ../.. --build missing -s build_type=Debug -g cmake_find_package_multi -s compiler=clang -s compiler.version=16
-cd ../..
+conan install . -of ./build/Debug --build missing -s build_type=Debug -s compiler=clang -s compiler.version=17
 
 mkdir -p build/Release
-cd ./build/Release
-conan install ../.. --build missing -s build_type=Release -g cmake_find_package_multi -s compiler=clang -s compiler.version=16
-cd ../..
+conan install . -of ./build/Release --build missing -s build_type=Release -s compiler=clang -s compiler.version=17
