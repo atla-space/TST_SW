@@ -18,17 +18,6 @@ if (CMAKE_BUILD_TYPE STREQUAL "Debug")
     add_compile_options(-Wall -Wextra -pedantic)
     
     set(CMAKE_LINK_WHAT_YOU_USE ON)
-    # find clang-tidy and cppcheck
-    
-    find_program(CLANG_TIDY_EXE NAMES "clang-tidy" DOC "Path to clang-tidy executable")
-    if (${CLANG_TIDY_EXE_FOUND})
-        set(CMAKE_CXX_CLANG_TIDY ${CLANG_TIDY_EXE} -checks=-*,readability-*,modernize-*,performance-*,clang-analyzer-*,cppcoreguidelines-*,bugprone-*,portability-*)
-    endif()
-
-    find_program(CPPCHECK_EXE NAMES "cppcheck" DOC "Path to cppcheck executable")
-    if (${CPPCHECK_EXE_FOUND})
-        set(CMAKE_CXX_CPPCHECK ${CPPCHECK_EXE} --enable=all --inconclusive)
-    endif()
 endif()
 
 

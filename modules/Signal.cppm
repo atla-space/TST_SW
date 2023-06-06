@@ -24,7 +24,7 @@ export struct dummy_mutex {
 	}
 	void unlock() {
 	}
-	bool try_lock() {
+	auto try_lock() -> bool {
 		return true;
 	}
 };

@@ -12,7 +12,8 @@ export struct CalibrationPoint {
 	double measured{};
 	double value{};
 
-	constexpr std::string toJson() const {
+	[[nodiscard]] constexpr auto
+	toJson() const -> std::string {
 		return fmt::format(R"({{"calibration_id": {}, "measured": {}, "value": {}}})", calibration_id, measured, value);
 	}
 };
@@ -20,7 +21,7 @@ export struct CalibrationPoint {
 namespace soci {
 export template<>
 struct type_conversion<CalibrationPoint> {
-	typedef values base_type;
+	using base_type = values;
 
 	static void from_base(values const& v, indicator /* ind */, CalibrationPoint& p) {
 		p.id             = v.get<int>("id");

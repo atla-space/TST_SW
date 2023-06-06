@@ -42,7 +42,7 @@ auto pullUpDnControl([[maybe_unused]] int pin, [[maybe_unused]] int pull) -> voi
 module Hardware.GPIO;
 
 namespace {
-constexpr int pullMap(GPIO::Pull pull) {
+[[nodiscard]] constexpr auto pullMap(GPIO::Pull pull) -> int {
 	switch (pull) {
 	case GPIO::Pull::up:
 		return PUD_UP;
@@ -55,7 +55,7 @@ constexpr int pullMap(GPIO::Pull pull) {
 	return PUD_OFF;
 }
 
-constexpr int directionMap(GPIO::Direction direction) {
+[[nodiscard]] constexpr auto directionMap(GPIO::Direction direction) -> int {
 	switch (direction) {
 	case GPIO::Direction::in:
 		return INPUT;
@@ -79,11 +79,12 @@ GPIO::GPIO(GPIO&& other) noexcept : _pin{other._pin}, _direction{other._directio
 	other._pin = 0;
 }
 
-void GPIO::operator=(GPIO&& other) noexcept {
+auto GPIO::operator=(GPIO&& other) noexcept -> GPIO& {
 	_pin       = other._pin;
 	_direction = other._direction;
 	_pull      = other._pull;
 	other._pin = 0;
+	return *this;
 }
 
 auto GPIO::setPull(Pull pull) -> void {

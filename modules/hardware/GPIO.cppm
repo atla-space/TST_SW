@@ -14,11 +14,13 @@ public:
 	GPIO(pin_no pin);
 	~GPIO();
 
+	// Movable
 	GPIO(GPIO&& other) noexcept;
-	void operator=(GPIO&& other) noexcept;
+	auto operator=(GPIO&& other) noexcept -> GPIO&;
 
-	GPIO(const GPIO&)            = delete;
-	GPIO& operator=(const GPIO&) = delete;
+	// But not copyable
+	GPIO(const GPIO&)                    = delete;
+	auto operator=(const GPIO&) -> GPIO& = delete;
 
 	enum class Pull { up, down, none };
 	enum class Direction { in, out };
@@ -26,8 +28,8 @@ public:
 	auto setPull(Pull pull) -> void;
 	auto setDirection(Direction direction) -> void;
 
-	auto read() const -> bool;
-	auto write(bool value) const -> void;
+	[[nodiscard]] auto read() const -> bool;
+	auto               write(bool value) const -> void;
 
 	template<typename Rep, typename Period>
 	static auto busyWait(std::chrono::duration<Rep, Period> duration) -> void {
@@ -36,7 +38,6 @@ public:
 		}
 	}
 
-private:
 private:
 	pin_no    _pin{};
 	Direction _direction{Direction::in};

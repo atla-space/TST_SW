@@ -27,10 +27,12 @@ public:
 		_offset         = (s_y - _slope * s_x) / n;
 	}
 
+	[[nodiscard]]
 	auto slope() const -> double {
 		return _slope;
 	}
 
+	[[nodiscard]]
 	auto offset() const -> double {
 		return _offset;
 	}

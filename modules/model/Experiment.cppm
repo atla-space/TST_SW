@@ -10,7 +10,7 @@ export struct Experiment {
 	int         id{};
 	std::string name;
 
-	constexpr std::string toJson() const {
+	constexpr auto toJson() const -> std::string {
 		return fmt::format(R"({{ "name": "{}","id": {} }})", name, id);
 	}
 };
@@ -18,7 +18,7 @@ export struct Experiment {
 namespace soci {
 export template<>
 struct type_conversion<Experiment> {
-	typedef values base_type;
+	using base_type = values;
 
 	static void from_base(values const& v, indicator /* ind */, Experiment& p) {
 		p.id   = v.get<int>("id");

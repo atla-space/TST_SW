@@ -9,9 +9,10 @@ export module Model.Calibration;
 
 export struct Calibration {
 	int     id{};
-	std::tm timestamp;
+	std::tm timestamp{};
 
-	constexpr std::string toJson() const {
+	[[nodiscard]] constexpr auto
+	toJson() const -> std::string {
 		return fmt::format(R"({{"id": {}, "timestamp": "{:%Y-%m-%d %H:%M:%S}"}})", id, timestamp);
 	}
 };

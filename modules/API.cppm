@@ -23,7 +23,8 @@ public:
 	API(std::shared_ptr<CivetServer> server);
 	~API();
 
-	auto check(decltype(std::declval<Connection>().write(std::span<std::byte>{})) ret) {
+	static auto
+	check(decltype(std::declval<Connection>().write(std::span<std::byte>{})) ret) {
 		std::visit(
 		    [](auto&& arg) {
 			    using T = std::decay_t<decltype(arg)>;
